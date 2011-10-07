@@ -1,0 +1,88 @@
+% CS410 Counting, Probability, and Computing - HW1
+% Thomas Schreiber and Russell Miller
+
+\documentclass{article}
+\usepackage{anysize}
+%\usepackage{wasysym}
+\usepackage{graphicx}
+
+%for boxed - note: cannot use alongside package 'wasysym'
+\usepackage{amsmath}
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\title{CS410 HW1}
+\author{Thomas Schreiber and Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{1. }
+\textbf{Each of ten people simultaneously requests a distinct movie from a new service that broadcasts 3D movies. These 3D movies are broadcast as a left and a right stream, which are distinct. (So 10 distinct movies, 20 distinct streams in total.) But the service is not very reliable, and the 3D effect only works if you receive a matching left and right stream. Assume that each person receives exactly two of the streams, and each stream goes to exactly one person.}
+\begin{enumerate}
+\item[a.] \textbf{How many ways are there for the streams to be broadcast if the service provider makes no guarantees about which streams each person receives?}\\
+Because we are organizing the 20 possible streams in 20 possible orders, we use the permutation formula to see the answer is: $\boxed{20!}$
+\item[b.] \textbf{How many ways if each person receives a matching left and right stream?}\\
+This time we simply pick which movie we are watching (10!), then pick whether the left stream comes to the left side of the TV ($2^{10}$). Using the multiplication rule the solution is: $\boxed{(10!)(2^{10}) = 3715891200}$
+\item[c.] \textbf{How many ways if each person is guaranteed one left stream and one right stream? (Not necessarily for the same movie.)}\\
+This time we have 2 groups of streams, the left ones and the right ones. First we pick one from the left (10!), then one from the right (10!), then pick whether the left stream comes to the left side of the TV ($2^{10}$). The total product would be: 
+$\boxed{(10!)(10!)(2^{10})}$
+\end{enumerate}
+
+\paragraph{2. }
+\textbf{If three distinct dice are rolled, what is the probability that the largest rolled value is exactly twice the smallest?}\\
+There are 3 cases where this is satisfied. 
+\begin{itemize}
+\item There is at least one 6, at least one 3, and the third cannot be 1 or 2. After placing the 6 and the 3, we need to choose 1 number from the 4 that are available ${4 \choose 1} = 4$.
+\item There is at least one 4, at least one 2, and the third can only be 2, 3, or 4. After placing the 4 and the 2, we need to choose 1 number from the 3 that are available ${3 \choose 1} = 3$.
+\item There are only 1's and 2's. After placing the required 1 and 2, we need to choose 1 number that is either 1 or 2 ${2 \choose 1} = 2$.
+\end{itemize}
+Because these are disjoint, the number of ways is obtained with a sum, divided by the total number of ways to roll 3 dice to get the probability.\\
+$\boxed{\left( \frac{4+3+2}{6^3} \right) = \frac{1}{24}}$
+
+\pagebreak
+
+\paragraph{3. }
+\textbf{Give an exact expression for the probability that two (or more) people in a group of 25 have the same birthday?}\\
+Including the extra day of a leap year there are 366 possible birthdays. We are calculating the probability of everyone having different birthdays. We started by selecting one person and calculating the probability that no one that has been selected yet has the same birthday as them. For the first person it's $\frac{366}{366} = 1$. For the second person, we calculate the probability that their birthday is different from the first ($\frac{365}{366}$) and so on until the last person, who has a probability of $\frac{341}{366}$ of not sharing a birthday with anyone in the room. The complement of "number of shared birthdays is less than or equal to one" is "number of shared birthdays is greater than 1," which could also be worded "number of shared birthdays is at least 2," which satisfies this problem.\\
+$\boxed{1 - ((\frac{366}{366}) (\frac{365}{366}) (\frac{364}{366}) ... (\frac{341}{366})) = .567684 = 56.768\%}$
+
+\paragraph{4. }
+\textbf{A coin is flipped 18 times. The result has the following pattern: one or more heads, one or more tails, one or more heads, one or more tails. Exactly one of the runs of heads has length at least eight. How many ways can this happen?}\\
+We first enforced the rule of having at least one coin in each of the four groups. To do this we placed a ``springy'' gap after each of these coins.
+\begin{verbatim}
+H__T__H__T__
+\end{verbatim}
+The next rule is that there must be \textbf{exactly} one of the runs has length at least eight (See below details on the emphasis of the word ``exactly'').
+In order to enforce this rule we group 7 H's into one token. Those 7, and the original 4, leave 7 more as the remainder. There are two groups which the 7 H's can be placed in so we will multiply the solution by two. Next we use the ``Stars and Bars'' formula to solve the counting of the 7 unknown coins.
+\begin{verbatim}
+H[HHHHHHH]___T___H___T___
+           * | * | * | *
+         or
+H___T___H[HHHHHHH]___T___
+  * | *     |      * | *
+\end{verbatim}
+The 7 unknown plus 3 bars gives us ${10 \choose 3}$. Calculating for both groups the 7 heads need to go in, the solution is:\\
+$2{10 \choose 3} = 240$\\
+But remember, there was only \textbf{one} run that could have length greater than or equal to 8. Out of the possible compositions it is possible for the 7 unknowns to all be heads meaning there would be \textbf{two} runs of 8. This means the actual solution must be:\\
+$\boxed{2{10 \choose 3} - 1 = 239}$
+
+\paragraph{5. }
+\textbf{Consider the following pair of equations: $x_1 + x_2 + á á á + x_6 = 20$ and $x_1 + x_2 + x_3 = 7$. These equations must be simultaneously satisfied. How many non-negative, integer solutions are there?}\\
+This can be easily simplified by substituting the 7 from the $2^{nd}$ equation for $x_1+x_2+x_3$ in the first formula. The result would be the following equations:\\
+$x_1+x_2+x_3 = 7$ and $x_4+x_5+x_6 = 13$.
+Using ``Stars and Bars'' on each of these the solution is:\\
+ $\boxed{{9 \choose 2}{15 \choose 2} = 3780}$
+
+\pagebreak
+
+\paragraph{6. }
+\textbf{Give a combinatorial argument for the following identity:}
+\begin{center}
+$\sum\limits_{k=0}^n {n \choose k}^2 = {2n \choose n}$
+\end{center}
+Summing ${n \choose k}$ is the same as picking members for committees of increasing sizes. We decided to explain this identity with military branches in place of committees. Because of the $2n$ on the right-hand side, we also chose to explain that the original group of people have been cloned. So as the value of k increases, a person from the original group is selected to join the Army and a person from the clone group is selected for the Navy. Because the people selected for the Army and Navy can only total $n$ for each branch, and on the right-hand side there is only one committee constructed by choosing $n$ of the $2n$ people, no matter how the different sizes of committees are added the two are equivalent.
+
+\end{document}
