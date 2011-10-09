@@ -83,16 +83,18 @@ Using ``Stars and Bars'' on each of these the solution is:\\
 \begin{center}
 $\sum\limits_{k=0}^n {n \choose k}^2 = {2n \choose n}$
 \end{center}
+
 Two generals are taxed with building an invasion force. General 1 is in charge of the navy of which there are $n$ sailors. General 2 is in charge of the marines of which there are ${m = n}$ marines. 
 
-General 1 wants to use the left side of the equation, ${\sum\limits_{k=0}^n {n \choose k}^2}$. In other words, general 1 would like to find the number of possible invasion forces where the chosen marines and sailors are equal. We can find this number by summing the counts of possible invasion forces based off of how many people are chosen from each group, ${ ({n \choose 0} * {m \choose 0}) + ({n \choose 1} * {m \choose 1}) + ... + ({n \choose n-1} * {m \choose m-1}) + ({n \choose n} * {m \choose m})}$.
+General 1 wants to use the left side of the equation, ${\sum\limits_{k=0}^n {n \choose k}^2}$. In other words, general 1 would like to find the number of possible invasion forces where the chosen marines and sailors are equal. We can find this number by summing the counts of possible invasion forces based off of how many people are chosen from each group, ${ ({n \choose 0} {m \choose 0}) + ({n \choose 1} {m \choose 1}) + ... + ({n \choose n-1} {m \choose m-1}) + ({n \choose n} {m \choose m})}$.
 
-General 2 wants to use the right side of the equation, ${2n \choose n}$. By putting all of the sailors and all of the marines into one group how many ways can you build an invasion force of n people?
-After much discussion general 2 proposes that they look at her solution in a new light. Out of all of the possible n size invasion forces the right side of the equation counts there are ${ {n \choose 0} * {m \choose m}}$ ways in which the invasion force could be chosen with 0 sailors, ${ {n \choose 1} * {m \choose m-1}}$ ways in which the force could be chosen with 1 sailor, and so on. Also, for every way to choose a group of sailors there is an equivalent way not to choose that many, ie ${ {n \choose 0} = {n \choose n}}$. So, if general 2 counts of the number of ways to create the invasion force based off of how many sailors are in the force we get ${ ({n \choose 0} * {m \choose n}) + ({n \choose 1} * {m \choose m-1}) + ... + ({n \choose n-1} * {m \choose 1}) + ({n \choose n} * {m \choose 0})}$, and we know ${m = n}$ and each way to choose a number of soldiers has an equivalent way not to choose them which means that: 
+General 2 wants to use the right side of the equation, ${2n \choose n}$. By putting all of the sailors and all of the marines into one group how many ways can you build an invasion force of $n$ people?
 
-${ ({n \choose 0} * {m \choose n}) + ({n \choose 1} * {m \choose m-1}) + ... + ({n \choose n-1} * {m \choose 1}) + ({n \choose n} * {m \choose 0})}$ 
+After much discussion general 2 proposes that they look at her solution in a new light. Out of all of the possible n size invasion forces the right side of the equation counts there are ${ {n \choose 0} {m \choose m}}$ ways in which the invasion force could be chosen with 0 sailors, ${ {n \choose 1} {m \choose m-1}}$ ways in which the force could be chosen with 1 sailor, and so on. Also, for every way to choose a group of sailors there is an equivalent way to choose those not added to the invasion force, i.e. ${ {n \choose 0} = {n \choose n}}$. So, if general 2 counts all of the number of ways to create the invasion force based off of how many sailors are in the force we get ${ ({n \choose 0} {m \choose m}) + ({n \choose 1} {m \choose m-1}) + ... + ({n \choose n-1} {m \choose 1}) + ({n \choose n} {m \choose 0})}$. We know that ${m = n}$ and each way to choose a number of soldiers has an equivalent way not to choose them which means that: 
 
-${= ({n \choose 0} * {m \choose 0}) + ({n \choose 1} * {m \choose 1}) + ... + ({n \choose n-1} * {m \choose m-1}) + ({n \choose n} * {m \choose m})}$. 
+${ ({n \choose 0} {m \choose m}) + ({n \choose 1} {m \choose m-1}) + ... + ({n \choose n-1} {m \choose 1}) + ({n \choose n} {m \choose 0})}$ 
+
+${= ({n \choose 0} {m \choose 0}) + ({n \choose 1} {m \choose 1}) + ... + ({n \choose n-1} {m \choose m-1}) + ({n \choose n} {m \choose m})}$. 
 
 So, both of the generals were searching for the same number.
 
