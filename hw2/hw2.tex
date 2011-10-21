@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,latexsym,amsthm}
+\usepackage{fullpage}
+\newtheorem{lemma}{Lemma}
+\author{Thomas Schreiber \& Russell Miller}
+\title{HW 2, Fall 2011}
+ 
+\begin{document}
+\maketitle
+\begin{center}
+\hrule
+\end{center}
+\vspace*{1ex}
+
+\paragraph{Problem 1:} You work at a coffee shop, and you are bored.
+To pass the time, you decide to count the number of ways to make~$r$
+cents of change out of pennies (1 cent), nickels (5 cents), dimes (10
+cents) and quarters (25 cents).  Give the generating function for this. \\
+
+We begin by finding the generating functions for the individual coins: \\
+
+Pennies count individual cents: ${(1 + x + x^2 + x^3 + ...)}$ \\
+
+Nickels count in increments of 5: ${(1 + x^5 + x^{10} + x^{15} + ...)}$ \\
+
+Dimes count in increments of 10: ${(1 + x^{10} + x^{20} + x^{30} + ...)}$ \\
+
+Quarters count in increments of 25: ${(1 + x^{25} + x^{50} + x^{75} + ...)}$ \\
+
+Next, we find the generating function for our coffee problem by multiplying all of the above generating functions together. \\
+
+\begin{eqnarray*}
+  a_r & = & (1 + x + x^2 + x^3 + ...) (1 + x^5 + x^{10} + X^{15} + ...) \\
+    & \times & (1 + x^{10} + x^{20} + x^{30} + ...) (1 + x^{25} + x^{50} + x^{75} + ...) \\
+\end{eqnarray*}
+
+\begin{center}
+  ${\boxed{ r = ( \frac{1}{1 - x} ) ( \frac{1}{1 - x^{5}} ) ( \frac{1}{1 - x^{10}} ) ( \frac{1}{1 - x^{25}} ) } }$
+\end{center}
+
+\paragraph{Problem 2:} \textbf{(a)} Give the generating function for $a_n$, the
+number of ways to build a set of~$n$ objects from ten distinct types,
+where you may choose to have 0,3 or 8 of each type.  \textbf{(b)}
+Determine $a_{25}$. \\
+
+\subparagraph{(a)}{ The generating function for choosing 0, 3 or 8 from a single type is: \\ 
+  \begin{center}
+    ${ ( 1 + x^3 + x^8 ) }$ \\
+  \end{center}
+
+And we have 10 types to choose from making our equation: \\
+
+\begin{center}
+  ${  \boxed { ( 1 + x^{3} + x^{8} )^{10} } }$
+\end{center}
+}
+
+\subparagraph{(b)} { What we want are the number of ways to get 25 objects by selecting 0, 3 or 8 from 10 distinct groups. There is only one way that multiples of 3 and 8 can equal 25 ( ${ ( 3 * 3 ) + ( 8 * 2 ) = 25 }$. So, we need to choose 2 groups to select 8 objects from and 3 groups to select 3 objects from. \\
+
+\begin{center}
+  ${ \boxed { a_{25} = {10 \choose 2}  {8 \choose 3}  = 2520 } }$ \\
+\end{center}
+
+\paragraph{Problem 3:} Show that $(1-x-x^2-x^3-x^4-x^5-x^6)^{-1}$ is
+the generating function for the number of ways a sum of~$r$ can occur
+if a die is rolled an arbitrary number ($0,1,2,\ldots$) of times. \\
+
+The generating function for a single die is: \\
+\begin{center}
+  ${ ( x + x^2 + x^3 + x^4 + x^5 + x^6 ) }$\\
+\end{center}
+
+We want the sum of an arbitrary number of dice: \\
+\begin{eqnarray*}
+ a_r  & = &  \sum_{i=0}^{\infty} ( x + x^2 + x^3 + x^4 + x^5 + x^6 )^i \\
+      & = &  \sum_{i=0}^{\infty} y^i,\ where \  y = ( x + x^2 + x^3 + x^4 + x^5 + x^6 ) \\
+      & = &  \frac{1}{1 - y} \\
+      & = &  \frac{1}{1 - ( x + x^2 + x^3 + x^4 + x^5 + x^6 ) }\\
+      & = &  \frac{1}{(1 - x - x^2 - x^3 - x^4 - x^5 - x^6 ) }  \\ \\
+      & = &  (1 - x - x^2 - x^3 - x^4 - x^5 - x^6 )^{-1}  \\
+      QED
+\end{eqnarray*}
+
+
+\paragraph{Problem 4:} Use generating functions to solve the
+recurrence relation $a_n = 4a_{n-1} + (-2)^n$ for $n \geq 1$, with
+$a_0=1$.  Make sure to give a closed-form solution for $a_n$.  \\
+
+Given: \\
+\begin{eqnarray}
+  a_0 & = & 1 \\
+  a_n & = & 4 a_{n - 1} + (-2)^n \\
+\end{eqnarray}
+I will find the a solution to the recurrence relation with using the generating function A(x). \\
+
+\begin{eqnarray}
+  A(x) & = & \sum_{n=0}^{\infty} a_{n - 1} + (-2)^n \\
+       & = & \sum_{n=0}^{\infty}
+\end{eqnarray}
+
+
+\end{document}
