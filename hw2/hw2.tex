@@ -38,6 +38,8 @@ Next, we find the generating function for our coffee problem by multiplying all 
   ${\boxed{ r = ( \frac{1}{1 - x} ) ( \frac{1}{1 - x^{5}} ) ( \frac{1}{1 - x^{10}} ) ( \frac{1}{1 - x^{25}} ) } }$
 \end{center}
 
+\pagebreak
+
 \paragraph{Problem 2:} \textbf{(a)} Give the generating function for $a_n$, the
 number of ways to build a set of~$n$ objects from ten distinct types,
 where you may choose to have 0,3 or 8 of each type.  \textbf{(b)}
@@ -78,7 +80,7 @@ We want the sum of an arbitrary number of dice: \\
       & = &  \frac{1}{1 - ( x + x^2 + x^3 + x^4 + x^5 + x^6 ) }\\
       & = &  \frac{1}{(1 - x - x^2 - x^3 - x^4 - x^5 - x^6 ) }  \\ \\
       & = &  (1 - x - x^2 - x^3 - x^4 - x^5 - x^6 )^{-1}  \\
-      QED
+      \blacksquare
 \end{eqnarray*}
 
 
@@ -86,17 +88,65 @@ We want the sum of an arbitrary number of dice: \\
 recurrence relation $a_n = 4a_{n-1} + (-2)^n$ for $n \geq 1$, with
 $a_0=1$.  Make sure to give a closed-form solution for $a_n$.  \\
 
-Given: \\
-\begin{eqnarray}
+Given: 
+\begin{eqnarray*}
   a_0 & = & 1 \\
-  a_n & = & 4 a_{n - 1} + (-2)^n \\
-\end{eqnarray}
-I will find the a solution to the recurrence relation with using the generating function A(x). \\
+  a_n & = & 4 a_{n - 1} + (-2)^n 
+\end{eqnarray*}
+I will find a solution to the recurrence relation using the generating function A(x).
 
 \begin{eqnarray}
-  A(x) & = & \sum_{n=0}^{\infty} a_{n - 1} + (-2)^n \\
-       & = & \sum_{n=0}^{\infty}
+  A(x ) & = & \sum_{n=0}^{\infty} a_nx^n 
+\end{eqnarray}
+Now I'm substituting $a_n$ back in.
+
+\begin{eqnarray}
+ & = & \sum_{n=1}^{\infty} (4a_{n-1}x^n + (-2)^nx^n) \\
+ & = & \sum_{n=1}^{\infty} (4a_{n-1}x^n) + \sum_{n=0}^{\infty} (-2x)^n \\
+ & = & 4x \sum_{n=0}^{\infty} (a_{n}x^n) + \sum_{n=0}^{\infty} (-2x)^n
+\end{eqnarray}
+Let $y = -2x$.
+
+\begin{eqnarray}
+& = & 4x \sum_{n=0}^{\infty} (a_{n}x^n) + \sum_{n=0}^{\infty} y^n\\
+& = & 4x A(x) + \frac{1}{1-y}
+\end{eqnarray}
+Now I'm substituting $y$ back in.
+
+\begin{eqnarray}
+& = & 4x A(x) + \frac{1}{1+2x} \\
+A(x)(1-4x) & = & \frac{1}{1+2x} \\
+A(x) & = & \frac{1}{1+2x}\frac{1}{1-4x}
+\end{eqnarray}
+Now using partial fractions, we can turn this product into a sum.
+
+\begin{eqnarray}
+1 & = & \frac{a}{1+2x} + \frac{b}{1-4x}
+\end{eqnarray}
+Assume $a+b=1$.
+
+\begin{eqnarray}
+1 & = & a(1-4x) + b(1+2x) \\
+1 & = & a - 4ax + b + 2bx \\
+0 & = & -4ax + 2bx \\
+2b & = & 4a \\
+b & = & 2a \\
+a & = & \frac{1}{3} \\
+b & = & \frac{2}{3}
+\end{eqnarray}
+Now we can put $a$ and $b$ back into the $A(x)$ equation.
+
+\begin{eqnarray}
+A(x) & = & \left(\frac{1}{3}\right)\frac{1}{1+2x} + \left(\frac{2}{3}\right)\frac{1}{1-4x}
+\end{eqnarray}
+Now to get the $a_n$ term.
+
+\begin{eqnarray}
+a_n & = & \frac{1}{3}(-2)^n + \frac{2}{3}(4)^n
 \end{eqnarray}
 
+\begin{center}
+$\boxed{a_n = \frac{1}{3}((-2)^n + 2^{2n+1})}$
+\end{center}
 
 \end{document}
