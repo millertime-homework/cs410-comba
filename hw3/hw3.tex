@@ -1,0 +1,67 @@
+% CS410 Counting, Probability, and Computing - HW3
+% Russell Miller
+
+\documentclass{article}
+\usepackage{anysize}
+%\usepackage{wasysym}
+\usepackage{graphicx}
+
+%for boxed - note: cannot use alongside package 'wasysym'
+\usepackage{amsmath}
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\title{CS410 HW1}
+\author{Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{1.8 I choose a number uniformly at random from the range [1,
+1,000,000]. Using the inclusion-exclusion principle, determine the
+probability that the number chosen is divisible by one or more of 4, 6, and
+9.\\}
+I wasn't sure exactly how to get these sets of numbers, so I wrote a
+script in Python that generated them. I checked each set of numbers to get
+intersects, and produced a size of each set. Let each variable $divX$
+represent how many numbers are divisible by $X$, with multiple $X$s being 
+the intersects, and $mil$ just being the number $1,000,000$. Here is the 
+final formula I used to get this probability.
+\begin{eqnarray*}
+P(div4 \cup div6 \cup div9) & = & P(div4) + P(div6) + P(div9) - P(div4 \cap
+  div6) - P(div4 \cap div9) - \\
+      &   & P(div6 \cap div9) + P(div4 \cap div6 \cap 
+  div9)\\
+      & = & \frac{div4}{mil} + \frac{div6}{mil} + 
+  \frac{div9}{mil} - \frac{div46}{mil} - \frac{div49}{mil} - 
+  \frac{div69}{mil} + \frac{div469}{mil}\\
+      & = & \frac{250000}{mil} + \frac{166666}{mil} + 
+  \frac{111111}{mil} - \frac{83333}{mil} - \frac{27777}{mil} - 
+  \frac{55555}{mil} + \frac{27777}{mil}
+\end{eqnarray*}
+\begin{center}
+$\boxed{= .3\bar{8}9}$
+\end{center}
+{\footnotesize See attached transcript of Pythons script.}
+
+\paragraph{1.10 I have a fair coin and a two-headed coin. I choose one of
+the two coins randomly with equal probability and flip it. Given that the 
+flip was heads, what is the probability that I flipped the two-headed 
+coin?\\}
+Let $A$ be the event of choosing the two-headed coin. Let $B$ be the event
+of flipping a heads. We're told that $P(B) = \frac{1}{2}$. Getting a heads 
+while flipping the two-headed coin is 1. So $P(B \mid A) = 1$. Since there
+are 4 total possible outcomes (Heads, Heads, Heads, Tails), getting Heads 
+is $\frac{3}{4}$, which is $P(A)$.
+\begin{eqnarray*}
+  P(A \mid B) & = & \frac{P(A \cap B)}{P(B)}\\
+              & = & \frac{P(B \mid A)P(A)}{P(B)}\\
+              & = & \frac{1 \times \frac{3}{4}}{\frac{1}{2}}
+\end{eqnarray*}
+\begin{center}
+$\boxed{= \frac{3}{2}}$
+\end{center}
+
+\end{document}
