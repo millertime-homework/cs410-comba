@@ -1,0 +1,74 @@
+% CS410 Midterm
+% Take-Home portion
+
+\documentclass{article}
+\usepackage{anysize}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\marginsize{1.5cm}{1.5cm}{1.5cm}{1.5cm}
+
+\title{CS410 Take-home Midterm}
+\author{Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{verbatim}
+                                             __J"L__
+                                         ,-"`--...--'"-.
+                                        /  /\       /\  \
+                                       J  /__\  _  /__\  L
+                                       |       / \       |
+                                       J    _  """  _    F
+                                        \   \\/\_/\//   /
+                                         "-._\/\_/\/_,-"
+                                             """""""
+\end{verbatim}
+
+\paragraph{Textbook 2.22\\}
+\textbf{Let $a_1, a_2, ..., a_n$ be a list of $n$ distinct numbers. We say that
+$a_i$ and $a_j$ are $inverted$ if $i<j$ but $a_i>a_j$. The $Bubblesort$ sorting
+algorithm swaps pairwise adjacent inverted numbers in the list until there are 
+no more inversions, so the list is in sorted order. Suppose that the input to 
+Bubblesort is a random permutation, equally likely to be any of the $n!$ 
+permutations of $n$ distinct numbers. Determine the expected number of 
+inversions that need to be corrected by Bubblesort.\\\\}
+First we define the random variable $X$ to represent the number of inversions 
+required for the list to be sorted. $X$ is made up of a set of indicator random
+variables $X_{ij}$ where each $X_{ij} = 1$ when $a_i$ and $a_j$ are inverted. 
+That is, $i<j$ and $a_i>a_j$. Since we know that
+\begin{eqnarray*}
+X & = & \sum\limits_{i<j} X_{ij}
+\end{eqnarray*}
+
+by the Linearity of Expectation, we know that
+\begin{eqnarray*}
+E[X] & = & \sum\limits_{i<j} E[X_{ij}]
+\end{eqnarray*}
+
+and since $j$ is defined as being adjacent to $i$
+\begin{eqnarray*}
+     & = & \sum\limits_{i=1}^n \sum\limits_{j=i+1}^n Pr(X_{ij}=1)
+\end{eqnarray*}
+
+The probability of a pair of numbers being inverted is simply $\frac{1}{2}$.
+$a_i$ and $a_j$ are two random digits, and it's equally likely that either 
+could be greater than the other.
+\begin{eqnarray*}
+Pr(X_{ij}) & = & \frac{1}{2}
+\end{eqnarray*}
+
+Plugging this back in
+\begin{eqnarray*}
+E[X] & = & \sum\limits_{i=1}^n \sum\limits_{j=i+1}^n \frac{1}{2}\\
+     & = & \left(\frac{n}{2}\right)\left(\frac{n-1}{2}\right)
+\end{eqnarray*}
+
+\begin{center}
+$\boxed{E[X] = \frac{n(n-1)}{4}}$
+\end{center}
+
+\end{document}
