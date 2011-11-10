@@ -1,0 +1,50 @@
+% CS410 HW4
+
+\documentclass{article}
+\usepackage{anysize}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\marginsize{1.5cm}{1.5cm}{1.5cm}{1.5cm}
+
+\title{CS410 HW4}
+\author{Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% 2.14, 3.6, 2.21, 3.3, 3.21                                                    |
+
+\paragraph{2.14 The geometric distrubution arises as the distribution of the 
+number of times we flip a coin until it comes up heads. Consider now the 
+distribution of the number of flips $X$ until the $k$th head appears, where 
+each coin flip comes up heads independently with probability $p$. Prove that 
+this distribution is given by}
+\begin{eqnarray*}
+\mbox{Pr}(X=n)={n-1 \choose k-1}p^k(1-p)^{n-k}\\
+\mbox{for } n \geq k.
+\end{eqnarray*}
+
+We would like to know when the $k$th head is flipped. Let $X_1$ be a geometric 
+random variable that is the distribution of the number of times we flip the coin
+until the first heads, and so on for all values of $i=\{1,2,...,k\}$.
+\begin{eqnarray*}
+X = \sum\limits_{i=1}^k X_i
+\end{eqnarray*}
+
+For each of these geometric random variables $X_i$, the distribution for the 
+$j$th head is
+\begin{eqnarray*}
+\mbox{Pr}(X_i=j) = (1-p)^{j-1}p 
+\end{eqnarray*}
+
+So the distribution of $X$ would be
+\begin{eqnarray*}
+\mbox{Pr}(X=n)=\sum\limits_{k=1}^n (1-p)^{k-1}p
+\end{eqnarray*}
+
+\Large SO LOST
+
+\end{document}
