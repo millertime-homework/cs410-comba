@@ -3,6 +3,7 @@
 \documentclass{article}
 \usepackage{anysize}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 
 \marginsize{1.5cm}{1.5cm}{1.5cm}{1.5cm}
@@ -17,7 +18,7 @@
 
 % 2.14, 3.6, 2.21, 3.3, 3.21                                                    |
 
-\paragraph{2.14 The geometric distrubution arises as the distribution of the 
+\paragraph{2.14 The geometric distribution arises as the distribution of the 
 number of times we flip a coin until it comes up heads. Consider now the 
 distribution of the number of flips $X$ until the $k$th head appears, where 
 each coin flip comes up heads independently with probability $p$. Prove that 
@@ -27,24 +28,88 @@ this distribution is given by}
 \mbox{for } n \geq k.
 \end{eqnarray*}
 
-We would like to know when the $k$th head is flipped. Let $X_1$ be a geometric 
-random variable that is the distribution of the number of times we flip the coin
-until the first heads, and so on for all values of $i=\{1,2,...,k\}$.
+The distribution of a binomial random variable is
 \begin{eqnarray*}
-X = \sum\limits_{i=1}^k X_i
+Pr(X=k)={n\choose k}p^k(1-p)^{n-k}
 \end{eqnarray*}
+The difference between this and the aforementioned distribution is that this 
+gives the probability that there are $k$ heads. What we want to find is the 
+probability that after finding $k$ heads, we have only flipped $n$ coins.\\
+\\
+Assume that on the $n$th flip, we achieve our $k$th heads. Now we know that on 
+the previous $n-1$ flips, we had exactly $k-1$ heads. So the probability that 
+we tossed $k-1$ heads in $n-1$ flips is the same as the probability that the 
+$k$th heads was achieved on the $n$th flip. However, $p$ and $p-1$ are not 
+raised to the $k-1$, and that's because there are in fact $k$ total heads. 
+$\blacksquare$
 
-For each of these geometric random variables $X_i$, the distribution for the 
-$j$th head is
+\paragraph{3.6 For a coin that comes up heads independently with probability
+$p$ on each flip, what is the variance in the number of flips until the $k$th
+head appears?\\}
+The distribution of the number of flips of a coin until the $k$th heads could
+be viewed as a sum of the distributions of geometric random variables 
+representing the previous $k-1$ heads. Let $X$ be the random variable for the
+number of coin flips until the $k$th heads, and each $X_i$ be a geometric 
+random variable for the number of flips to get the $i$th heads. For example,
+$X_1$ is the number of coin flips until the first heads. 
 \begin{eqnarray*}
-\mbox{Pr}(X_i=j) = (1-p)^{j-1}p 
+X = \sum_{i=1}^k X_i
 \end{eqnarray*}
-
-So the distribution of $X$ would be
+We know that if each $X_i$ is mutually independent (which we're told each coin
+flip is)
 \begin{eqnarray*}
-\mbox{Pr}(X=n)=\sum\limits_{k=1}^n (1-p)^{k-1}p
+Var[\sum_{i=1}^k X_i] = \sum_{i=1}^k Var[X_i]
 \end{eqnarray*}
+We need the variance of $X_i$, which we derived in class.
+\begin{eqnarray*}
+Var[X_i] = \frac{1-p}{p^2}
+\end{eqnarray*}
+Plugging this back into our distribution of X to find its variance
+\begin{eqnarray*}
+Var[X] & = & \sum_{i=1}^k \frac{1-p}{p^2}
+\end{eqnarray*}
+\begin{center}
+$\boxed{=\frac{k(1-p)}{p^2}}$
+\end{center}
 
-\Large SO LOST
+\paragraph{2.21 Let $a_1, a_2, ..., a_n$ be a random permutation of 
+$\{1, 2, ..., n\}$, equally likely to be any of the $n!$ possible permutations. 
+When sorting the list $a_1, a_2, ..., a_n$, the element $a_i$ must move a 
+distance of $|a-i|$ places from its current position to reach its 
+position in the sorted order. Find}
+\begin{eqnarray*}
+E\left[\sum_{i=1}^n |a_i-1|\right],
+\end{eqnarray*}
+\textbf{the expected total distance that elements will have to be moved.\\\\}
+Let $X_i$ be a random variable for the distance that element $i$ moves, 
+$|a_i-i|$. Let $a_i$ be a random variable for the $i$th element's 
+position in a random permutation.
+\begin{eqnarray*}
+E[a_i] = \sum_{i=1}^n i\mbox{ Pr}(a_i=i)
+\end{eqnarray*}
+Because any of the $n$ positions is equally likely,
+\begin{eqnarray*}
+\mbox{Pr}(a_i=i) & = & \frac{1}{n}\\
+E[a_i] & = & \sum_{i=1}^n \frac{i}{n}\\
+	& = & \frac{1}{n}(1+2+...+n)\\
+	& = & \frac{1}{n}\frac{n(n+1)}{2}\\
+	& = & \frac{n+1}{2}
+\end{eqnarray*}
+Now we can find $E[X_i]$ by the linearity of expectation.
+\begin{eqnarray*}
+E[X_i] & = & E[|a_i-i|]\\
+	& = & |E[a_i]-E[i]|\\
+	& = & \left|\frac{n+1}{2}-i\right|
+\end{eqnarray*}
+Now we are ready to find $E[X]$, and we'll use linearity of expectation again.
+\begin{eqnarray*}
+E[X] & = & E\left[\sum_{i=1}^n X_i\right]\\
+	& = & \sum_{i=1}^n E[X_i]\\
+	& = & \sum_{i=1}^n \left|\frac{n+1}{2}-i\right|\\
+	& = & \left|\sum_{i=1}^n \frac{n+1}{2}-\sum_{i=1}^n i\right|\\
+\end{eqnarray*}
+\begin{center}
+$\boxed{answer}$
+\end{center}
 
 \end{document}
