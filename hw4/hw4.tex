@@ -78,7 +78,7 @@ When sorting the list $a_1, a_2, ..., a_n$, the element $a_i$ must move a
 distance of $|a-i|$ places from its current position to reach its 
 position in the sorted order. Find}
 \begin{eqnarray*}
-E\left[\sum_{i=1}^n |a_i-1|\right],
+E\left[\sum_{i=1}^n |a_i-i|\right],
 \end{eqnarray*}
 \textbf{the expected total distance that elements will have to be moved.\\\\}
 Let $X_i$ be a random variable for the distance that element $i$ moves, 
@@ -110,7 +110,7 @@ E[X] & = & E\left[\sum_{i=1}^n X_i\right]\\
 	& = & \left|\frac{n+1}{2}-\frac{n(n+1)}{2}\right|
 \end{eqnarray*}
 \begin{center}
-$\boxed{\left|\frac{1-n^2}{2}\right|}$
+$\boxed{=\left|\frac{1-n^2}{2}\right|}$
 \end{center}
 
 \end{document}
