@@ -81,36 +81,25 @@ position in the sorted order. Find}
 E\left[\sum_{i=1}^n |a_i-i|\right],
 \end{eqnarray*}
 \textbf{the expected total distance that elements will have to be moved.\\\\}
-Let $X_i$ be a random variable for the distance that element $i$ moves, 
-$|a_i-i|$. Let $a_i$ be a random variable for the $i$th element's 
-position in a random permutation.
+We will be applying the linearity of expectation, so we need to consider
+$E[|a_i-i|]$. Pr($a_i=j)$, where $j$ is any of the $n$ positions, is $1/n$
+since any of them is equally likely.
 \begin{eqnarray*}
-E[a_i] = \sum_{i=1}^n i\mbox{ Pr}(a_i=i)
+E[|a_i-i|] & = & \sum_{i=1}^n |a_i-i|\mbox{ Pr}(a_i=i)\\
+	& = & \frac{1}{n}\sum_{i=1}^n |a_i-i|\\
+	& = & \frac{1}{n}\left|\sum_{i=1}^n a_i-\sum_{i=1}^n i\right|\\
+	& = & \frac{1}{n}\left|\frac{n(n+1)}{2}-i\right|\\
+	& = & \left|\frac{n+1}{2}-\frac{i}{n}\right|
 \end{eqnarray*}
-Because any of the $n$ positions is equally likely,
+Now we are ready to apply linearity of expectation.
 \begin{eqnarray*}
-\mbox{Pr}(a_i=i) & = & \frac{1}{n}\\
-E[a_i] & = & \sum_{i=1}^n \frac{i}{n}\\
-	& = & \frac{1}{n}(1+2+...+n)\\
-	& = & \frac{1}{n}\frac{n(n+1)}{2}\\
-	& = & \frac{n+1}{2}
-\end{eqnarray*}
-Now we can find $E[X_i]$ by the linearity of expectation.
-\begin{eqnarray*}
-E[X_i] & = & E[|a_i-i|]\\
-	& = & |E[a_i]-E[i]|\\
-	& = & \left|\frac{n+1}{2}-i\right|
-\end{eqnarray*}
-Now we are ready to find $E[X]$, and we'll use linearity of expectation again.
-\begin{eqnarray*}
-E[X] & = & E\left[\sum_{i=1}^n X_i\right]\\
-	& = & \sum_{i=1}^n E[X_i]\\
-	& = & \sum_{i=1}^n \left|\frac{n+1}{2}-i\right|\\
-	& = & \left|\sum_{i=1}^n \frac{n+1}{2}-\sum_{i=1}^n i\right|\\
-	& = & \left|\frac{n+1}{2}-\frac{n(n+1)}{2}\right|
+E\left[\sum_{i=1}^n |a_i-i|\right] & = & \sum_{i=1}^n E[|a_i-i|]\\
+	& = & \sum_{i=1}^n \left|\frac{n+1}{2}-\frac{i}{n}\right|\\
+	& = & \left|\sum_{i=1}^n \frac{n+1}{2}-\frac{1}{n}\sum_{i=1}^n i\right|\\
+	& = & \left|\frac{n(n+1)}{2}-\frac{1}{n}\frac{n(n+1)}{2}\right|
 \end{eqnarray*}
 \begin{center}
-$\boxed{=\left|\frac{1-n^2}{2}\right|}$
+$\boxed{=\left|\frac{n^2-1}{2}\right|}$
 \end{center}
 
 \end{document}
