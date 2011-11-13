@@ -9,7 +9,7 @@
 \marginsize{1.5cm}{1.5cm}{1.5cm}{1.5cm}
 
 \title{CS410 HW4}
-\author{Russell Miller}
+\author{Russell Miller and Thomas Schreiber}
 \date{\today}
 
 \begin{document}
@@ -100,6 +100,74 @@ E\left[\sum_{i=1}^n |a_i-i|\right] & = & \sum_{i=1}^n E[|a_i-i|]\\
 \end{eqnarray*}
 \begin{center}
 $\boxed{=\left|\frac{n^2-1}{2}\right|}$
+\end{center}
+
+\paragraph{3.3 Suppose that we roll a standard fair die 100 times. Let $X$ 
+be the sum of the numbers that appear over the 100 rolls. Use Chebyshev's 
+inequality to bound ${Pr(|X - 350| \geq 50)}$.}
+
+Chebyshev's tells us that: \\
+
+${ Pr(|X - 350| \geq 50) \leq \frac{Var[X]}{50^2} }$ \\
+
+So, next we will find Var[X]: \\
+
+\begin{eqnarray*}
+    Var[X] & = & E[X^2] - E[X]^2 \\
+           & = & E[ \sum_{i=1}^{100} \frac{1}{6} ( 1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2) ] - E[ \sum_{i=1}^{100} \frac{1}{6} ( 1 + 2 + 3 + 4 + 5 + 6) ]^2 \\
+           & = & \sum_{i=1}^{100} ( E[ \frac{1}{6} ( 1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2) ] - E[\frac{1}{6} ( 1 + 2 + 3 + 4 + 5 + 6) ]^2 ) \\
+           & = & \sum_{i=1}^{100} ( \frac{91}{6} - ( \frac{21}{6} )^2 ) \\
+           & = & \sum_{i=1}^{100} ( \frac{91}{6} - ( \frac{73.5}{6} ) \\
+           & = & \sum_{i=1}^{100} ( \frac{17.5}{6} ) \\
+           & = & \frac{1750}{6} \\
+           & = & 291.6\bar{6}  \\
+\end{eqnarray*}
+
+Finally, we plug this into Chebyshev's: \\
+
+\begin{eqnarray*}
+    Pr(| X - 350| \geq 50) & \leq & \frac{Var[X]}{50^2} \\
+                             & = & \frac{291.6\bar{6}}{50^2} \\
+\end{eqnarray*}
+\begin{center}
+    $\boxed{=0.116\bar{6}}$
+\end{center}
+
+paragraph{3.21 A fixed point of a permutation ${\pi : [1,n] \Rightarrow [1,n] }$ 
+is a value for which ${\pi (x) = x}$ . Find the variance in the number of fixed
+points of a permutation chosen uniformly at random from all permutations.}
+
+Let X be the number of fixed points. \\
+
+We know that: ${ Var[X] = E[X^2] - E[X]^2 }$ \\
+
+First, we find ${E[X]}$: \\
+
+\begin{eqnarray*}
+    E[X] & = & E[ \sum_{i=1}^n X_i ] \\
+         & = & \sum_{i=1}^n E[ X_i ] \\
+         & = & \sum_{i=1}^n Pr(X_i = 1) \\
+         & = & \sum_{i=1}^n \frac{(n-1)!}{n!} \\
+         & = & \sum_{i=1}^n \frac{1}{n} \\
+         & = & 1 \\
+\end{eqnarray*}
+
+Now we will find ${E[X^2]}$: \\
+
+\begin{eqnarray*}
+    E[X^2] & = & E[ (X_1 + X_2 + \dots + X_{n})^2 ] \\
+           & = & E[ (\sum_{i=1}^n X_i^2 + \sum_{i\neq j} X_iX_{j} ) ], \  the\ square\ of\ the\ polynomial\ is\ rewritten\ as\ the\ sum\ of\ each\ term\\ 
+           & = & \sum_{i=1}^n E[X_i^2] + \sum_{i\neq j} E[X_iX_{j}] \hspace{15ex} squared\ plus\ that\ term\ multiplied\ by\ every\ other\ term. \\
+           & = & \sum_{i=1}^n Pr(X_i = 1) + \sum_{i\neq j} ( Pr(X_i = 1) Pr(X_{j} = 1) )  \\
+           & = & n ( \frac{1}{n} ) + ( n(n-1)) (\frac{1}{n}) (\frac{1}{n-1}) \\
+           & = & 1 + 1 \\
+           & = & 2 \\
+\end{eqnarray*}
+
+Now, we plug these in to get the solution. \\
+
+\begin{center}
+    ${\boxed{Var[X] = 2 - 1^2 = 1 } }$ \\
 \end{center}
 
 \end{document}
