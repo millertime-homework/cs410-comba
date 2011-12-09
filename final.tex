@@ -16,6 +16,69 @@
 
 \maketitle
 
-\paragraph{1. Consider building a network in the following way. Given $n$ machines, insert an edge between any pair of machines with probability $p = c/n$ for some $c \leq n$. For what value of $c$ is the expected number of edges $(n - 1)$? For this $c$, give the best upper bound you can on the probability that there are at least $2(n - 1)$ edges in the network.}
+% QUESTION 1
+\paragraph{1. Consider building a network in the following way. Given $n$ 
+machines, insert an edge between any pair of machines with probability $p = 
+c/n$ for some $c \leq n$. For what value of $c$ is the expected number of edges 
+$(n - 1)$? For this $c$, give the best upper bound you can on the probability 
+that there are at least $2(n - 1)$ edges in the network.\\\\}
+
+Let us define a random variable $X$ to represent the total number of edges. Let 
+us also consider an individual edge between two machines. Let $X_i$ be an 
+indicator random variable that is $1$ if and only if there is an edge between 
+those two machines. Then $X$ will be a binomial random variable that is equal 
+to the sum of these indicators.
+\begin{equation*}
+X = \sum_{i=1}^m X_i
+\end{equation*}
+where $m$ is the total number of combinations of 2 machines. We can see that $m 
+= {n\choose 2}$.\\
+Now we will find the expected number of edges $E[X]$.
+\begin{equation*}
+E[X] = E[\sum_{i=1}^{n\choose 2} X_i] = \sum_{i=1}^{n\choose 2} E[X_i] = 
+{n\choose 2}p
+\end{equation*}
+We're told that $p=c/n$.
+\begin{equation*}
+E[X] = {n\choose 2}\left(\frac{c}{n}\right) = \frac{c(n-1)}{2}
+\end{equation*}
+In order to find $c$, let us assume that $E[X] = n-1$ and solve for $c$.
+\begin{eqnarray*}
+\frac{c(n-1)}{2} & = & n-1\\
+c(n-1) & = & 2(n-1)\\
+c & = & 2
+\end{eqnarray*}
+
+Let's get the variance of $X$ in attempt to find a good bound. The variance of 
+a Binomial random variable with parameters $n$ and $p$ is $np(1-p)$, but $X\sim 
+B({n\choose 2},2/n)$.
+\begin{equation*}
+Var[X] = {n\choose 2}\left(\frac{2}{n}\right)(1-\left(\frac{2}{n}\right)) = 
+	(n-1)(1-\left(\frac{2}{n}\right)) = \frac{(n-1)(n-2)}{n}
+\end{equation*}
+We now have a Chebyshev bound.
+\begin{equation*}
+Pr(|X-E[X]|\geq a) \leq \frac{Var[X]}{a^2}
+\end{equation*}
+We need to find $a$, and we're bounding the condition of $X \geq 2E[X]$. If 
+$X=2E[X]$, then $X-E[X] = E[X] = a$.
+\begin{equation*}
+Pr(|X-E[X]| \geq E[X]) \leq \frac{Var[X]}{(E[X])^2} = 
+\frac{\frac{(n-1)(n-2)}{n}}{(n-1)^2} = \frac{n-2}{n(n-1)}
+\end{equation*}
+
+% QUESTION 2
+\paragraph{2. Consider a graph $G = (V, E)$ with the following properties: 
+there exists a partitioning of the vertex set $V$ into subsets $V_1$ and $V_2$ 
+of sizes $r$ and $s$ (respectively); for all $x \in V_1$ and $y \in V_2$ there 
+is an edge between $x$ and $y$; there are no edges between vertices in $V_1$, 
+and no edges between vertices in $V_2$. Such a graph is denoted $K_{r,s}$ and 
+is called a complete bipartite graph (with vertex partitioning into sets of 
+size $r$ and $s$.) Clearly the number of edges in $K_{r,s}$ is $rs$.\\
+Prove that there is a two-coloring of edges of $K_{r,s}$ with at most}
+\begin{equation*}
+{r\choose a}{s\choose b}2^{1-ab}
+\end{equation*}
+\textbf{monochromatic $K_{a,b}$ as subgraphs.}
 
 \end{document}
