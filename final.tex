@@ -79,6 +79,76 @@ Prove that there is a two-coloring of edges of $K_{r,s}$ with at most}
 \begin{equation*}
 {r\choose a}{s\choose b}2^{1-ab}
 \end{equation*}
-\textbf{monochromatic $K_{a,b}$ as subgraphs.}
+\textbf{monochromatic $K_{a,b}$ as subgraphs.\\\\}
+
+First we should determine how many $K_{a,b}$ there are in $K_{r,s}$. This
+is $n={r\choose a}{s\choose b}$. Next we will let $S_i$ be bernoulli random 
+variables
+that are 1 if and only if $K_i$ is monochromatic. We have the following.
+\begin{equation*}
+Pr(S_1\neq1 \cap S_1\neq1 \cap ... \cap S_n\neq1)
+\end{equation*}
+Which can be rewritten as
+\begin{equation*}
+1-Pr(S_1=1 \cup S_1=1 \cup ... \cup S_n=1)
+\end{equation*}
+Or
+\begin{equation*}
+1-\sum_{i=1}^n Pr(\mu=1)
+\end{equation*}
+
+\emph{Alright, I was trying to follow along with what seemed like similar
+exercises in my notes and I'm going to be completely honest, I have no idea
+how to prove anything about coloring graphs. I drew a $K_{2,3}$ graph and 
+couldn't
+2-color it by hand and I have no idea how to show that it's possible. Maybe it's
+not. I'm sure there's some trick here that I'm just not seeing. I don't know
+what else to try here.}
+
+
+\pagebreak
+
+% QUESTION 3
+\paragraph{3. Let $X_1,X_2,...,X_m$ be independent and identically distributed 
+indicator random variables, and let $\mu = E[X_i]$ for all $i$. If we want}
+\begin{equation*}
+\mbox{Pr}\left(\left|\left(\frac{1}{m}\sum_{i=1}^m X_i\right)-\mu\right| \geq 
+\varepsilon\mu \right) \leq \delta
+\end{equation*}
+\textbf{for some $0 < \varepsilon < 1$ and $0 \leq \delta \leq 1$, how many 
+indicators $m$ do we require? (Hint: think Chernoff, and derive a bound on $m$ 
+that is a function of $\varepsilon, \delta, \mu$.)\\\\}
+
+Using Corollary 4.6 from Mitzenmacher and Upfal, we can rearrange this to be
+\begin{equation*}
+Pr\left(\left|\left(\frac{1}{m}\sum_{i=1}^m\right)-\varepsilon\mu\right| 
+\geq\delta\right)\leq 2e^{-\mu\varepsilon^2/3}
+\end{equation*}
+
+The portion related to $m$ here, $\frac{1}{m}\sum\limits_{i=1}^m X_i$, can be
+thought of as $\frac{\mu}{m}$ because as $m$ approaches the size of the 
+population $\mu$ is based on, this value approaches $\mu$. So $\varepsilon$ is
+directly related to $m$ in the following way.
+\begin{equation*}
+m \leq \frac{\delta}{\frac{1}{m}-\varepsilon}
+\end{equation*}
+
+\emph{Professor Shrimpton, I am aware this is probably the worst answer you'll
+see for this question. I'd say I've been pretty much lost for the last couple
+weeks. I don't know how to ``derive a Chernoff bound.'' I tried and tried to
+figure it out, and I don't see a connection between the derivations we do in
+class and the ones you're asking us to do. Sorry.}
+
+% QUESTION 4
+\paragraph{4. The following approach is often called \emph{reservoir sampling}. 
+Suppose we have a sequence of items passing by one at a time. We want to 
+maintain a sample of one item with the property this it is uniformly 
+distributed over all the items that we have seen at each step. Moreover, we 
+want to accomplish this without knowing the total number of items in advance or 
+storing all of the items that we see.\\
+Consider the following algorithm, which stores just one item in memory at all 
+times. When the first item appears, it is stored in the memory. When the $k$th 
+item appears, it replaces the item in memory with the probability $1/k$. 
+Explain why this algorithm solves the problem.}
 
 \end{document}
