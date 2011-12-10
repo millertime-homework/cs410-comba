@@ -37,8 +37,12 @@ solve them, I keep working myself into a rut. Under each answer in the pages
 that follow, 
 I tried to express that I spent
 hours trying to splice these problems and break them down to a simpler level,
-to no avail. Please do not misinterpret this write-up as lazily thrown together
-or apathetic about the topic. That is all.}
+to no avail. Also note that I was working on number 5 when the clock struck 
+6:00 and didn't have it completed nor did I get nearly enough time to check
+my work on it, by the time I had skipped ahead to it.
+Please do not misinterpret this write-up as lazily thrown together
+or apathetic about the topic. I did thoroughly enjoy the challenge of your
+class this term. That is all.}
 
 \pagebreak
 
@@ -210,19 +214,65 @@ another implementation of a uniform random item sampler.
 
 % QUESTION 5
 \paragraph{5. Consider throwing $m$ balls uniformly and independently into bins 
-labeled $0, 1,..., n?1$. We say there is a $k-gap$ starting at bin $i$ if bins 
-$i, i + 1,..., i + k ? 1$ are empty.}
+labeled $0, 1,..., n-1$. We say there is a $k$-$gap$ starting at bin $i$ if 
+bins 
+$i, i + 1,..., i + k-1$ are empty.}
 \begin{enumerate}
-\item[\textbf{a.}] \textbf{Determine the expected number ($\mu$) of $k-gaps$.}
+\item[\textbf{a.}] \textbf{Determine the expected number ($\mu$) of $k$-gaps.}\\
+
+Let $G$ be a random variable representing the number of $k$-gaps total and
+\begin{equation*}
+G = \sum_{i=0}^{n-k} G_i
+\end{equation*}
+where each $G_i$ is a random variable that is 1 when there is a $k$-gap at bin 
+$i$
+, and 0 otherwise.\\
+Then to find $\mu$
+\begin{equation*}
+E[G] = \sum_{i=0}^{n-k} E[G_i] = \sum_{i=0}^{n-k} Pr(G_i=1)
+\end{equation*}
+So now we need to know what is the probability that there is a $k$-gap starting
+at bin $i$.
+
+The probability of just one bin being empty is
+\begin{equation*}
+\left(1-\frac{1}{n}\right)^m \leq e^{-\frac{m}{n}}
+\end{equation*}
+The probability of $k$ bins in a row being empty would then be bounded by 
+\begin{equation*}
+(e^{-{\frac{m}{n}}})^k = e^{-\frac{mk}{n}}
+\end{equation*}
+So the expected value $\mu = E[G]$ would be
+\begin{equation*}
+E[G] = \sum_{i=0}^{n-k} e^{-\frac{mk}{n}} = (n-k)(e^{-\frac{mk}{n}})
+\end{equation*}
+
 \item[\textbf{b.}] \textbf{Consider the case $n = 10$ and $k = 3$.\\ 
-						   What is the probability that 
-a 3-gap starts at bin 2, given that a 3-gap starts at bin 1?\\ 			
-			   What is the probability that a 3-gap starts at bin 
-5, given that a 3-gap starts at bin 1?}
+What is the probability that a 3-gap starts at bin 2, given that a 3-gap 
+starts at bin 1?\\ 			
+What is the probability that a 3-gap starts at bin 5, given that a 3-gap 
+starts at bin 1?}\\
+
+Pr$(B_4=0|B_1=0\cap B_2=0\cap B_3=0)$:\\
+Each bin $i$ has a probability of $1/10$ of getting landed in, for each ball 
+that was thrown. In order to throw $m$ balls and that bin still be empty, the 
+probability would be $(9/10)m$.
+\begin{eqnarray*}
+Pr(B_4=0|B_1=0\cap B_2=0\cap B_3=0) & = & \frac{Pr(B_1=0\cap B_2=0\cap 
+B_3=0\cap 
+B_4=0)}{Pr(B_1=0\cap B_2=0\cap B_3=0)}\\
+ & = & \frac{((9/10)m)^4}{((9/10)m^3}\\
+ & = & (9/10)m
+\end{eqnarray*}
+
+\emph{Ran out of time here.}
+
 \item[\textbf{c.}] \textbf{Use Chernoff bounds to give an upper bound on the 
 number of $k$-gaps. If it helps, assume that $k$ divides $n$. (Hint, use what 
-you learned in part (b).)}
-\end{enumerate}
+you learned in part (b).)}\\\\
 
+\emph{Again, sorry about the incomplete and poorly written final.}
+
+\end{enumerate}
 
 \end{document}
